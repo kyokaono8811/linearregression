@@ -1,0 +1,86 @@
+---
+title: "Tutorial"
+output: html_document
+vignette: >
+  %\vignetteIndexEntry{linearregression.package tutorial}
+  %\vignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(linearregression.packages)
+library(bench)
+```
+
+Load Data for Covariates (X) and Response Variable (Y): 
+
+```{r}
+library(datasets)
+data(iris)
+data <- iris[iris$Species == "setosa",]
+Y <- data$Sepal.Length
+X <- cbind(data$Petal.Length, data$Petal.Width)
+```
+
+To use the function "linear_regression":
+
+```{r}
+m <- linearregression(X,Y)
+```
+
+Efficiency 
+
+```{r}
+bench::mark(linearregression(X,Y))
+```
+
+To compute coefficient estimates:
+
+```{r}
+m$beta_hat
+```
+
+To compute the intercept:
+
+```{r}
+m$beta_hat[1,1]
+```
+
+To compute fitted values:
+
+```{r}
+head(m$yhat) 
+```
+
+To compute residuals: 
+
+```{r}
+head(m$res)
+```
+
+Comparison with the lm() function:
+
+```{r}
+m2 <- lm(Y~X)
+```
+
+Estimated Coefficients:
+
+```{r}
+m2$coefficients # the same coefficients 
+```
+
+Fitted Values:
+
+```{r}
+head(m2$fitted.values) # the same fitted values 
+```
+
+Residuals:
+
+```{r}
+head(m2$residuals) # the same residuals 
+```
+
+

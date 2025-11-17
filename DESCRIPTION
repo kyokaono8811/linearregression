@@ -1,0 +1,16 @@
+Package: linearregression.packages
+Title: Linear Regression Function 
+Version: 0.0.0.9000
+Authors@R: 
+    person("Kyoka", "Ono", , "kyokaono@umich.edu", role = c("aut", "cre"))
+Description: Conducts linear regression model and computes coefficient estimates, fitted values, and residuals. 
+License: `use_mit_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
