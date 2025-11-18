@@ -23,7 +23,7 @@ Y <- data$Sepal.Length
 X <- cbind(data$Petal.Length, data$Petal.Width)
 ```
 
-To use the function "linear_regression":
+To use the function "linearregression":
 
 ```{r}
 m <- linearregression(X,Y)
@@ -47,6 +47,12 @@ To compute the intercept:
 m$beta_hat[1,1]
 ```
 
+To compute the covariate coefficients (slope):
+
+```{r}
+m$beta_hat[-1]
+```
+
 To compute fitted values:
 
 ```{r}
@@ -68,7 +74,11 @@ m2 <- lm(Y~X)
 Estimated Coefficients:
 
 ```{r}
-m2$coefficients # the same coefficients 
+m2$coefficients               
+```
+
+```{r}
+all.equal(as.vector(m2$coefficients), as.vector(m$beta_hat))
 ```
 
 Fitted Values:
@@ -77,10 +87,19 @@ Fitted Values:
 head(m2$fitted.values) # the same fitted values 
 ```
 
+```{r}
+all.equal(as.vector(m2$fitted.values), as.vector(m$yhat))
+```
+
 Residuals:
 
 ```{r}
-head(m2$residuals) # the same residuals 
+head(m2$residuals) 
 ```
+
+```{r}
+all.equal(as.vector(m2$residuals), as.vector(m$res))
+```
+
 
 

@@ -359,14 +359,14 @@ data(iris)
 data &lt;- iris[iris$Species == &quot;setosa&quot;,]
 Y &lt;- data$Sepal.Length
 X &lt;- cbind(data$Petal.Length, data$Petal.Width)</code></pre>
-<p>To use the function “linear_regression”:</p>
+<p>To use the function “linearregression”:</p>
 <pre class="r"><code>m &lt;- linearregression(X,Y)</code></pre>
 <p>Efficiency</p>
 <pre class="r"><code>bench::mark(linearregression(X,Y))</code></pre>
 <pre><code>## # A tibble: 1 × 6
 ##   expression                  min   median `itr/sec` mem_alloc `gc/sec`
 ##   &lt;bch:expr&gt;             &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-## 1 linearregression(X, Y)   11.1µs   12.2µs    78465.    5.75KB     23.5</code></pre>
+## 1 linearregression(X, Y)   11.2µs     12µs    79252.    5.75KB     23.8</code></pre>
 <p>To compute coefficient estimates:</p>
 <pre class="r"><code>m$beta_hat</code></pre>
 <pre><code>##           [,1]
@@ -376,6 +376,9 @@ X &lt;- cbind(data$Petal.Length, data$Petal.Width)</code></pre>
 <p>To compute the intercept:</p>
 <pre class="r"><code>m$beta_hat[1,1]</code></pre>
 <pre><code>## [1] 4.247508</code></pre>
+<p>To compute the covariate coefficients (slope):</p>
+<pre class="r"><code>m$beta_hat[-1]</code></pre>
+<pre><code>## [1] 0.3989790 0.7121346</code></pre>
 <p>To compute fitted values:</p>
 <pre class="r"><code>head(m$yhat) </code></pre>
 <pre><code>##          [,1]
@@ -397,17 +400,23 @@ X &lt;- cbind(data$Petal.Length, data$Petal.Width)</code></pre>
 <p>Comparison with the lm() function:</p>
 <pre class="r"><code>m2 &lt;- lm(Y~X)</code></pre>
 <p>Estimated Coefficients:</p>
-<pre class="r"><code>m2$coefficients # the same coefficients </code></pre>
+<pre class="r"><code>m2$coefficients               </code></pre>
 <pre><code>## (Intercept)          X1          X2 
 ##   4.2475076   0.3989790   0.7121346</code></pre>
+<pre class="r"><code>all.equal(as.vector(m2$coefficients), as.vector(m$beta_hat))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>Fitted Values:</p>
 <pre class="r"><code>head(m2$fitted.values) # the same fitted values </code></pre>
 <pre><code>##        1        2        3        4        5        6 
 ## 4.948505 4.948505 4.908607 4.988403 4.948505 5.210626</code></pre>
+<pre class="r"><code>all.equal(as.vector(m2$fitted.values), as.vector(m$yhat))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <p>Residuals:</p>
-<pre class="r"><code>head(m2$residuals) # the same residuals </code></pre>
+<pre class="r"><code>head(m2$residuals) </code></pre>
 <pre><code>##           1           2           3           4           5           6 
 ##  0.15149489 -0.04850511 -0.20860721 -0.38840301  0.05149489  0.18937427</code></pre>
+<pre class="r"><code>all.equal(as.vector(m2$residuals), as.vector(m$res))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 
 
 

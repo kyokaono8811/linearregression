@@ -1,0 +1,55 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# linearregression.packages
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of linearregression.packages is to run a simple/multiple linear regression to understand the relationship between covariates and a response variable. 
+
+## Installation
+
+You can install the development version of linearregression.packages from [GitHub](https://github.com/) with: 
+
+``` r
+# install.packages("pak")
+pak::pak("kyokaono8811/linearregression")
+```
+
+## Usage
+
+This demonstrates how to use the function with a dataset (mtcars)
+
+```{r example}
+library(linearregression.packages)
+```
+
+```{r}
+library(datasets)
+data(mtcars)
+head(mtcars)
+```
+
+```{r}
+Y <- mtcars$hp
+X <- cbind(mtcars$wt, mtcars$drat)
+```
+
+```{r}
+linearregression(X,Y)
+```
+
+
