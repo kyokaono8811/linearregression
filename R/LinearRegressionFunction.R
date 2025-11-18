@@ -8,7 +8,12 @@
 #'
 #' @return the coefficient estimates, fitted values, and residuals
 #'
-#' @examples linearregression(X,Y)
+#' @examples
+#' library(datasets)
+#' data(mtcars)
+#' Y <- mtcars$hp
+#' X <- cbind(mtcars$wt, mtcars$drat)
+#' linearregression(X,Y)
 #'
 #' @export
 #'

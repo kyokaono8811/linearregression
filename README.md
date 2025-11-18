@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/kyokaono8811/linearregression/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kyokaono8811/linearregression/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/kyokaono8811/linearregression/graph/badge.svg)](https://app.codecov.io/gh/kyokaono8811/linearregression)
 <!-- badges: end -->
 
 The goal of linearregression.packages is to run a simple/multiple linear

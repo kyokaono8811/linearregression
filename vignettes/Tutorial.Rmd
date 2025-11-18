@@ -1,19 +1,28 @@
 ---
 title: "Tutorial"
-output: html_document
+output: rmarkdown::html_vignette
 vignette: >
-  %\vignetteIndexEntry{linearregression.package tutorial}
-  %\vignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
 library(linearregression.packages)
+```
+
+```{r}
 library(bench)
 ```
 
-Load Data for Covariates (X) and Response Variable (Y): 
+Load Data for Covariates (X) and Response Variable (Y):
 
 ```{r}
 library(datasets)
@@ -29,7 +38,7 @@ To use the function "linearregression":
 m <- linearregression(X,Y)
 ```
 
-Efficiency 
+Efficiency
 
 ```{r}
 bench::mark(linearregression(X,Y))
@@ -56,10 +65,10 @@ m$beta_hat[-1]
 To compute fitted values:
 
 ```{r}
-head(m$yhat) 
+head(m$yhat)
 ```
 
-To compute residuals: 
+To compute residuals:
 
 ```{r}
 head(m$res)
@@ -71,10 +80,16 @@ Comparison with the lm() function:
 m2 <- lm(Y~X)
 ```
 
+Efficiency
+
+```{r}
+bench::mark(m2)
+```
+
 Estimated Coefficients:
 
 ```{r}
-m2$coefficients               
+m2$coefficients
 ```
 
 ```{r}
@@ -84,7 +99,7 @@ all.equal(as.vector(m2$coefficients), as.vector(m$beta_hat))
 Fitted Values:
 
 ```{r}
-head(m2$fitted.values) # the same fitted values 
+head(m2$fitted.values) 
 ```
 
 ```{r}
@@ -94,12 +109,9 @@ all.equal(as.vector(m2$fitted.values), as.vector(m$yhat))
 Residuals:
 
 ```{r}
-head(m2$residuals) 
+head(m2$residuals)
 ```
 
 ```{r}
 all.equal(as.vector(m2$residuals), as.vector(m$res))
 ```
-
-
-

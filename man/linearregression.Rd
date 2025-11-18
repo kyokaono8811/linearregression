@@ -18,6 +18,10 @@ the coefficient estimates, fitted values, and residuals
 Conducts linear regression model and computes coefficient estimates, fitted values, and residuals.
 }
 \examples{
+library(datasets)
+data(mtcars)
+Y <- mtcars$hp
+X <- cbind(mtcars$wt, mtcars$drat)
 linearregression(X,Y)
 
 }
