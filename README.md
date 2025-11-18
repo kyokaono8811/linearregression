@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/kyokaono8811/linearregression/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kyokaono8811/linearregression/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of linearregression.packages is to run a simple/multiple linear
